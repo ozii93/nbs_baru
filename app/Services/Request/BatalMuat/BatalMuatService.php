@@ -581,8 +581,9 @@ class BatalMuatService
                         ->all();
 
                     $array_iso_code = array_values($reslt);
+                    \Log::error('DEBUG BATAL MUAT - array_iso_code:', ['data' => $array_iso_code]);
+                    \Log::error('DEBUG BATAL MUAT - get_container_list:', ['data' => $get_container_list]);
                     $new_iso = mapNewIsoCode($array_iso_code[0]["isoCode"]);
-
                     array_push(
                         $detailList,
                         array(
