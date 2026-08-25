@@ -466,6 +466,8 @@ class BatalMuatService
             $detailPranotaList = array();
             if ($fetchExDelivery->delivery_ke == 'TPK') {
                 $get_vessel = getVessel($payloadBatalMuat['vesselName'], $payloadBatalMuat['voyage'], $payloadBatalMuat['voyageIn'], $payloadBatalMuat['voyageOut']);
+
+
                 $get_iso_code = getIsoCode();
 
                 if (empty($get_iso_code)) {
@@ -710,6 +712,7 @@ class BatalMuatService
                     $fetchBatalMuat->voyage_in,
                     $fetchBatalMuat->voyage_out
                 );
+
 
                 $get_container_list = $this->getContainer(
                     null,

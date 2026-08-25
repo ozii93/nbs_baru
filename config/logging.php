@@ -141,6 +141,13 @@ return [
             'days' => 7
         ],
 
+        'error_batal_muat' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/error_batal_muat.log'),
+            'level' => 'error',
+            'days' => 7
+        ],
+
         'request_stripping' => [
             'driver' => 'daily',
             'path' => storage_path('logs/req_stripping.log'),

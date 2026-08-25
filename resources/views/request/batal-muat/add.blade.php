@@ -107,6 +107,7 @@
                                     <input class="form-control" id="NO_UKK" name="NO_UKK" type="hidden" />
                                     <input class="form-control" id="NM_AGEN" name="NM_AGEN" type="hidden" />
                                     <input class="form-control" id="VOYAGE" name="VOYAGE" type="hidden" />
+                                    <input class="form-control" id="VOYAGE_OUT" name="VOYAGE_OUT" type="hidden" />
                                     <input class="form-control" id="KD_AGEN" name="KD_AGEN" type="hidden" />
                                     <input class="form-control" id="CALL_SIGN" name="CALL_SIGN" type="hidden" />
                                     <input class="form-control" id="NO_BOOKING" name="NO_BOOKING" type="hidden"
