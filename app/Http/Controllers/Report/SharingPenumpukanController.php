@@ -1094,7 +1094,7 @@ class SharingPenumpukanController extends Controller
                                     WHERE
                                         --A.NO_REQUEST IN ('STR0119000107','STP0119000085')
                                         C.NOTA = 'Y'
-                                        AND C.TGL_REQUEST BETWEEN TO_DATE('$tgl_awal','DD/MM/YYYY') AND TO_DATE('$tgl_akhir','DD/MM/YYYY')
+                                        AND TRUNC(C.TGL_REQUEST) BETWEEN TO_DATE('$tgl_awal','DD/MM/YYYY') AND TO_DATE('$tgl_akhir','DD/MM/YYYY')
                                         --AND TO_CHAR(START_STACK, 'YYYYMMDD') = '20181229'
                         --			AND nvl(A.STATUS_REQ,'0') = '0'
                                     ORDER BY A.no_request ASC
@@ -1102,7 +1102,8 @@ class SharingPenumpukanController extends Controller
                             )X	ORDER BY no_request	
                         )Z GROUP BY NO_REQUEST
                         ";
-        } else {
+        
+    } else {
             $query_list_ = "SELECT 
                             NO_REQUEST, 
                             sum(biaya_masa11) biaya_masa11,
@@ -1759,14 +1760,13 @@ class SharingPenumpukanController extends Controller
                                     WHERE
                                         C.NOTA = 'Y'
                                         AND A.ASAL_CONT = 'TPK'
-                                        AND C.TGL_REQUEST BETWEEN TO_DATE('$tgl_awal','DD/MM/YYYY') AND TO_DATE('$tgl_akhir','DD/MM/YYYY')
+                                        AND TRUNC(C.TGL_REQUEST) BETWEEN TO_DATE('$tgl_awal','DD/MM/YYYY') AND TO_DATE('$tgl_akhir','DD/MM/YYYY')
                                     ORDER BY A.no_request ASC			
                                     )V								
                             )X	ORDER BY no_request	 	
                         )Z GROUP BY NO_REQUEST
                         ";
         }
-
 
         $row_q = DB::connection('uster')->select($query_list_);
         return DataTables::of($row_q)->make(true);
@@ -2855,6 +2855,7 @@ class SharingPenumpukanController extends Controller
                             )X	ORDER BY no_request	
                         )Z GROUP BY NO_REQUEST
                         ";
+                       
         } else {
             $query_list_ = "SELECT 
                             NO_REQUEST, 
@@ -3519,10 +3520,9 @@ class SharingPenumpukanController extends Controller
                         )Z GROUP BY NO_REQUEST
                         ";
         }
-
-
+        
         $row_q = DB::connection('uster')->select($query_list_);
-
+     
         // Buat Spreadsheet baru
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
