@@ -128,25 +128,26 @@
         </tr>
 
         @foreach ($row2 as $rows)
+
             @if ($rows->keterangan != 'MONITORING DAN LISTRIK')
                 @php
-                    $tgl_start_stack = isset($rows->tgl_start_stack) ? $rows->tgl_start_stack : ' - ';
-                    $tgl_end_stack = isset($rows->tgl_end_stack) ? $rows->tgl_end_stack : ' - ';
-                    $jumlah_hari = isset($rows->jumlah_hari) ? $rows->jumlah_hari : ' 0 ';
+                    $tgl_start_stack = isset($rows->start_stack) ? $rows->start_stack : ' - ';
+                    $tgl_end_stack = isset($rows->end_stack) ? $rows->end_stack : ' - ';
+                    $jumlah_hari = isset($rows->jml_hari) ? $rows->jml_hari : ' 0 ';
                     $den = '(' . $tgl_start_stack . ' s/d ' . $tgl_end_stack . ')' . $jumlah_hari . 'hari';
                 @endphp
             @else
                 @php
-                    $den = $rows->jumlah_hari . ' Shift';
+                    $den = $rows->jml_hari . ' Shift';
                 @endphp
             @endif
 
-            @if (isset($rows->tgl_start_stack) && $rows->tgl_start_stack != '')
+            @if (isset($rows->start_stack) && $rows->start_stack != '')
                 <tr>
-                    <td colspan="3" width="100">
+                    <td colspan="2" width="100">
                         <b>{{ $rows->keterangan }}</b>
                     </td>
-                    <td width="10" align="left">
+                    <td colspan="2" width="10" align="left">
                         <b>{{ $rows->jml_cont }}</b>
                     </td>
                     <td width="50" align="left">

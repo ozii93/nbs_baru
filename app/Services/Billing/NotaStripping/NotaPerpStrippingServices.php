@@ -132,6 +132,7 @@ class NotaPerpStrippingServices
 
             $mat3   = DB::connection('uster_dev')->selectOne($mat);
             $no_mat    = $mat3->no_peraturan;
+            
         } else {
             $mat = "SELECT * FROM MASTER_MATERAI@DBCLOUD_LINK WHERE STATUS='Y'";
 
@@ -152,7 +153,7 @@ class NotaPerpStrippingServices
         /**Fauzan modif 31 Agustus 2020 [NOT IN MATERAI]*/
         DB::connection('uster_dev')->statement("ALTER SESSION SET NLS_DATE_FORMAT='DD/MM/YYYY'");
         $res = DB::connection('uster_dev')->select($query_dtl);
-
+        
         $qcont = "SELECT A.NO_CONTAINER,'FCL' STATUS,B.SIZE_,B.TYPE_ FROM CONTAINER_STRIPPING@DBCLOUD_LINK A, MASTER_CONTAINER@DBCLOUD_LINK B WHERE A.NO_CONTAINER = B.NO_CONTAINER AND A.NO_REQUEST = '$no_req'";
         $rcont = DB::connection('uster_dev')->select($qcont);
         $listcont = "<br/>Daftar Container<br/><b>";
@@ -391,8 +392,8 @@ class NotaPerpStrippingServices
                                 VALUES('$no_nota_mti',TO_CHAR(SYSDATE,'YYYY'),'$no_req')";
                 $execQueryMti = DB::connection('uster')->statement($query_mti);
 
-                $query_detail   = "SELECT * FROM temp_detail_nota WHERE no_request = '$no_req' ";
-                $row = DB::connection('uster')->select($query_detail);
+                $query_detail   = "SELECT * FROM temp_detail_nota@DBCLOUD_LINK WHERE no_request = '$no_req' ";
+                $row = DB::connection('uster_dev')->select($query_detail);
 
                 foreach ($row as $key => $item) {
                     $id_iso         = $item->id_iso;
@@ -440,11 +441,11 @@ class NotaPerpStrippingServices
 
                 $update_nota = "UPDATE NOTA_STRIPPING SET CETAK_NOTA = 'Y' WHERE NO_NOTA = '$no_nota'";
                 $update_req = "UPDATE REQUEST_STRIPPING SET NOTA = 'Y' WHERE NO_REQUEST = '$no_req'";
-                $delete_temp = "DELETE from temp_detail_nota WHERE no_request = '$no_req'";
+                $delete_temp = "DELETE from temp_detail_nota@DBCLOUD_LINK WHERE no_request = '$no_req'";
 
                 // DB::connection('uster')->statement($update_nota);
                 DB::connection('uster')->statement($update_req);
-                DB::connection('uster')->statement($delete_temp);
+                DB::connection('uster_dev')->statement($delete_temp);
 
                 DB::commit();
                 return response()->json([

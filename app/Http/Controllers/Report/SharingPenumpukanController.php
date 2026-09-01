@@ -441,6 +441,7 @@ class SharingPenumpukanController extends Controller
         } else if ($jenis == 'STRIPPING') {
             $query_list_ = "SELECT 
                             NO_REQUEST, 
+                            TO_CHAR(MAX(TGL_REQUEST),'DD/MM/YYYY') TGL_REQUEST,
                             sum(biaya_masa11) biaya_masa11,
                             sum(biaya_masa12) biaya_masa12,
                             sum(biaya_masa2) biaya_masa2,
@@ -1106,6 +1107,7 @@ class SharingPenumpukanController extends Controller
     } else {
             $query_list_ = "SELECT 
                             NO_REQUEST, 
+                            TO_CHAR(MAX(TGL_REQUEST),'DD/MM/YYYY') TGL_REQUEST,
                             sum(biaya_masa11) biaya_masa11,
                             sum(biaya_masa12) biaya_masa12,
                             sum(biaya_masa2) biaya_masa2,
@@ -1759,7 +1761,7 @@ class SharingPenumpukanController extends Controller
                                         LEFT JOIN BORDER_GATE_IN D  ON A.NO_CONTAINER = D.NO_CONTAINER AND C.NO_REQUEST_RECEIVING = D.NO_REQUEST
                                     WHERE
                                         C.NOTA = 'Y'
-                                        AND A.ASAL_CONT = 'TPK'
+                                        --AND A.ASAL_CONT = 'TPK'
                                         AND TRUNC(C.TGL_REQUEST) BETWEEN TO_DATE('$tgl_awal','DD/MM/YYYY') AND TO_DATE('$tgl_akhir','DD/MM/YYYY')
                                     ORDER BY A.no_request ASC			
                                     )V								
@@ -2194,6 +2196,7 @@ class SharingPenumpukanController extends Controller
         } else if ($jenis == 'STRIPPING') {
             $query_list_ = "SELECT 
                             NO_REQUEST, 
+                            TO_CHAR(MAX(TGL_REQUEST),'DD/MM/YYYY') TGL_REQUEST,
                             sum(biaya_masa11) biaya_masa11,
                             sum(biaya_masa12) biaya_masa12,
                             sum(biaya_masa2) biaya_masa2,
@@ -2859,6 +2862,7 @@ class SharingPenumpukanController extends Controller
         } else {
             $query_list_ = "SELECT 
                             NO_REQUEST, 
+                            TO_CHAR(MAX(TGL_REQUEST),'DD/MM/YYYY') TGL_REQUEST,
                             sum(biaya_masa11) biaya_masa11,
                             sum(biaya_masa12) biaya_masa12,
                             sum(biaya_masa2) biaya_masa2,
@@ -3512,7 +3516,7 @@ class SharingPenumpukanController extends Controller
                                         LEFT JOIN BORDER_GATE_IN D  ON A.NO_CONTAINER = D.NO_CONTAINER AND C.NO_REQUEST_RECEIVING = D.NO_REQUEST
                                     WHERE
                                         C.NOTA = 'Y'
-                                        AND A.ASAL_CONT = 'TPK'
+                                        --AND A.ASAL_CONT = 'TPK'
                                         AND C.TGL_REQUEST BETWEEN TO_DATE('$tgl_awal','DD/MM/YYYY') AND TO_DATE('$tgl_akhir','DD/MM/YYYY')
                                     ORDER BY A.no_request ASC			
                                     )V								
@@ -3573,37 +3577,39 @@ class SharingPenumpukanController extends Controller
             // Header untuk jenis lain
             $sheet->setCellValue('A1', 'No');
             $sheet->setCellValue('B1', 'No Request');
-            $sheet->setCellValue('C1', 'Biaya Masa 1.1');
-            $sheet->setCellValue('D1', 'Biaya Masa 1.2');
-            $sheet->setCellValue('E1', 'Biaya Masa 2');
-            $sheet->setCellValue('F1', 'Total Penumpukan');
-            $sheet->setCellValue('G1', 'Total Penumpukan PPN');
-            $sheet->setCellValue('H1', 'Biaya Masa 1.2 Uster');
-            $sheet->setCellValue('I1', 'Biaya Masa 2 Uster');
-            $sheet->setCellValue('J1', 'Penumpukan Uster');
-            $sheet->setCellValue('K1', 'PPN Penumpukan Uster 10%');
-            $sheet->setCellValue('L1', 'Total Penumpukan Uster dan PPN');
-            $sheet->setCellValue('M1', 'Hak TPK');
-            $sheet->setCellValue('N1', 'Lift On TPK PPN');
-            $sheet->setCellValue('O1', 'Total Hak TPK');
+            $sheet->setCellValue('C1', 'Tgl Request');
+            $sheet->setCellValue('D1', 'Biaya Masa 1.1');
+            $sheet->setCellValue('E1', 'Biaya Masa 1.2');
+            $sheet->setCellValue('F1', 'Biaya Masa 2');
+            $sheet->setCellValue('G1', 'Total Penumpukan');
+            $sheet->setCellValue('H1', 'Total Penumpukan PPN');
+            $sheet->setCellValue('I1', 'Biaya Masa 1.2 Uster');
+            $sheet->setCellValue('J1', 'Biaya Masa 2 Uster');
+            $sheet->setCellValue('K1', 'Penumpukan Uster');
+            $sheet->setCellValue('L1', 'PPN Penumpukan Uster 10%');
+            $sheet->setCellValue('M1', 'Total Penumpukan Uster dan PPN');
+            $sheet->setCellValue('N1', 'Hak TPK');
+            $sheet->setCellValue('O1', 'Lift On TPK PPN');
+            $sheet->setCellValue('P1', 'Total Hak TPK');
 
             // Mengisi data ke dalam sheet
             foreach ($row_q as $key => $row) {
                 $sheet->setCellValue('A' . ($key + 2), $key + 1);
                 $sheet->setCellValue('B' . ($key + 2), $row->no_request);
-                $sheet->setCellValue('C' . ($key + 2), $row->biaya_masa11);
-                $sheet->setCellValue('D' . ($key + 2), $row->biaya_masa12);
-                $sheet->setCellValue('E' . ($key + 2), $row->biaya_masa2);
-                $sheet->setCellValue('F' . ($key + 2), $row->total_penumpukan);
-                $sheet->setCellValue('G' . ($key + 2), $row->total_penumpukan_plus_ppn);
-                $sheet->setCellValue('H' . ($key + 2), $row->biaya_masa12_uster);
-                $sheet->setCellValue('I' . ($key + 2), $row->biaya_masa2_uster);
-                $sheet->setCellValue('J' . ($key + 2), $row->penumpukan_uster);
-                $sheet->setCellValue('K' . ($key + 2), $row->ppn_penumpukan_uster_10_persen);
-                $sheet->setCellValue('L' . ($key + 2), $row->total_penumpukan_uster_dan_ppn);
-                $sheet->setCellValue('M' . ($key + 2), $row->hak_tpk);
-                $sheet->setCellValue('N' . ($key + 2), $row->lift_on_tpk_ppn);
-                $sheet->setCellValue('O' . ($key + 2), $row->total_hak_tpk);
+                $sheet->setCellValue('C' . ($key + 2), $row->tgl_request);
+                $sheet->setCellValue('D' . ($key + 2), $row->biaya_masa11);
+                $sheet->setCellValue('E' . ($key + 2), $row->biaya_masa12);
+                $sheet->setCellValue('F' . ($key + 2), $row->biaya_masa2);
+                $sheet->setCellValue('G' . ($key + 2), $row->total_penumpukan);
+                $sheet->setCellValue('H' . ($key + 2), $row->total_penumpukan_plus_ppn);
+                $sheet->setCellValue('I' . ($key + 2), $row->biaya_masa12_uster);
+                $sheet->setCellValue('J' . ($key + 2), $row->biaya_masa2_uster);
+                $sheet->setCellValue('K' . ($key + 2), $row->penumpukan_uster);
+                $sheet->setCellValue('L' . ($key + 2), $row->ppn_penumpukan_uster_10_persen);
+                $sheet->setCellValue('M' . ($key + 2), $row->total_penumpukan_uster_dan_ppn);
+                $sheet->setCellValue('N' . ($key + 2), $row->hak_tpk);
+                $sheet->setCellValue('O' . ($key + 2), $row->lift_on_tpk_ppn);
+                $sheet->setCellValue('P' . ($key + 2), $row->total_hak_tpk);
             }
         }
 
