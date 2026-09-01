@@ -1772,7 +1772,7 @@ class SharingPenumpukanController extends Controller
         return DataTables::of($row_q)->make(true);
     }
 
-    function print(Request $request)
+    function report(Request $request)
     {
 
         $tgl_awal = Carbon::createFromFormat('Y-m-d', $request->tgl_awal)->format('d/m/Y');
