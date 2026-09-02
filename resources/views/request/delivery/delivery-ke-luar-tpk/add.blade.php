@@ -523,12 +523,13 @@
         function input_error(err) {
             console.log(err);
             var detailMsg = err.message || (err.status && err.status.msg) || "Terjadi kesalahan";
-            var paramHtml = err.debug_param ? '<hr/><p style="text-align:left; font-weight:bold;">Parameter Input yang Dikirim:</p><pre style="text-align:left; font-size:11px; max-height:180px; overflow-y:auto; background:#f4f4f4; padding:8px; border-radius:4px;">' + JSON.stringify(err.debug_param, null, 2) + '</pre>' : '';
+            var formattedMsg = detailMsg.replace(/\n/g, '<br/>');
+            var paramHtml = err.debug_param ? '<hr/><p style="text-align:left; font-weight:bold;">Parameter Input yang Dikirim:</p><pre style="text-align:left; font-size:11px; max-height:160px; overflow-y:auto; background:#f4f4f4; padding:8px; border-radius:4px;">' + JSON.stringify(err.debug_param, null, 2) + '</pre>' : '';
             
             Swal.fire({
                 icon: 'error',
                 title: 'Gagal Memproses Data',
-                html: '<div style="text-align:left;"><p><strong>Pesan Error:</strong> <span style="color:#d33;">' + detailMsg + '</span></p></div>' + paramHtml,
+                html: '<div style="text-align:left; font-size:13px; line-height:1.5;"><p style="color:#d33; font-weight:bold;">' + formattedMsg + '</p></div>' + paramHtml,
                 confirmButtonText: 'Tutup'
             });
         }
