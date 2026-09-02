@@ -62,6 +62,13 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-2 py-2">
+                                        <label for="NO_REQ_STUFF">No Request Stuffing : </label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input class="form-control" id="NO_REQ_STUFF" name="NO_REQ_STUFF" type="text"
+                                            value="" placeholder="Contoh: STF0826000026" />
+                                    </div>
+                                    <div class="col-md-2 py-2">
                                         <label for="tb-fname">No P.E.B : </label>
                                     </div>
                                     <div class="col-md-4">
@@ -70,6 +77,8 @@
                                         <input class="form-control" id="id_KD_CABANG" name="KD_CABANG" type="hidden"
                                             value="{$KD_CABANG}" />
                                     </div>
+                                </div>
+                                <div class="row">
                                     <div class="col-md-2 py-2">
                                         <label for="tb-fname">No. N.P.E : </label>
                                     </div>
