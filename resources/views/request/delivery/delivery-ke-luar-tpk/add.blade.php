@@ -61,13 +61,13 @@
                                     <input id="REQUEST_BY" name="REQUEST_BY" type="hidden" value="PELINDO" />
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-2 py-2">
-                                        <label for="NO_REQ_STUFF">No Request Stuffing : </label>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <input class="form-control" id="NO_REQ_STUFF" name="NO_REQ_STUFF" type="text"
-                                            value="" />
-                                    </div>
+                                    <!-- <div class="col-md-2 py-2">
+                                            <label for="NO_REQ_STUFF">No Request Stuffing : </label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input class="form-control" id="NO_REQ_STUFF" name="NO_REQ_STUFF" type="text"
+                                                value="" />
+                                        </div> -->
                                     <div class="col-md-2 py-2">
                                         <label for="tb-fname">No P.E.B : </label>
                                     </div>
@@ -524,7 +524,7 @@
             console.log(err);
             var detailMsg = err.message || (err.status && err.status.msg) || "Terjadi kesalahan saat menyimpan data";
             var formattedMsg = detailMsg.replace(/\n/g, '<br/>');
-            
+
             Swal.fire({
                 icon: 'error',
                 title: 'Gagal Memproses Data',

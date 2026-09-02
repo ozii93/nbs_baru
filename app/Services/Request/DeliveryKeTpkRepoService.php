@@ -1222,11 +1222,11 @@ class DeliveryKeTpkRepoService
                 $userMsg = $msg;
                 if (str_contains($msg, 'ORA-01403') || str_contains(strtolower($msg), 'no data found')) {
                     $userMsg = "Gagal memproses data ke Praya/TPK (ORA-01403: Data Tidak Ditemukan di Database).\n\n" .
-                               "Poin Pengecekan:\n" .
-                               "1. Data Kapal / Voyage / No. UKK ('" . ($param['in_idvsb'] ?? '-') . "') tidak terdaftar di database Praya.\n" .
-                               "2. No. Request Stuffing ('" . ($param['in_nostuf'] ?? '-') . "') tidak valid / belum terbit nota.\n" .
-                               "3. Akun Customer PBM ('" . ($param['in_accpbm'] ?? '-') . "') tidak terdaftar di PConnect / Master PBM.\n" .
-                               "4. Kode Pelabuhan Tujuan POD ('" . ($param['in_pod'] ?? '-') . "') tidak ditemukan.";
+                        "Poin Pengecekan:\n" .
+                        "1. Data Kapal / Voyage / No. UKK ('" . ($param['in_idvsb'] ?? '-') . "') tidak terdaftar di database Praya.\n" .
+                        "2. No. Request Stuffing ('" . ($param['in_nostuf'] ?? '-') . "') tidak valid / belum terbit nota.\n" .
+                        "3. Akun Customer PBM ('" . ($param['in_accpbm'] ?? '-') . "') tidak terdaftar di PConnect / Master PBM.\n" .
+                        "4. Kode Pelabuhan Tujuan POD ('" . ($param['in_pod'] ?? '-') . "') tidak ditemukan.";
                 }
 
                 return [
@@ -1245,11 +1245,11 @@ class DeliveryKeTpkRepoService
             $userMsg = $rawMsg;
             if (str_contains($rawMsg, 'ORA-01403') || str_contains(strtolower($rawMsg), 'no data found')) {
                 $userMsg = "Gagal memproses data ke Praya/TPK (ORA-01403: Data Tidak Ditemukan di Database).\n\n" .
-                           "Poin Pengecekan:\n" .
-                           "1. Data Kapal / Voyage / No. UKK ('" . ($param['in_idvsb'] ?? '-') . "') tidak terdaftar di database Praya.\n" .
-                           "2. No. Request Stuffing ('" . ($param['in_nostuf'] ?? '-') . "') tidak valid / belum terbit nota.\n" .
-                           "3. Akun Customer PBM ('" . ($param['in_accpbm'] ?? '-') . "') tidak terdaftar di PConnect / Master PBM.\n" .
-                           "4. Kode Pelabuhan Tujuan POD ('" . ($param['in_pod'] ?? '-') . "') tidak ditemukan.";
+                    "Poin Pengecekan:\n" .
+                    "1. Data Kapal / Voyage / No. UKK ('" . ($param['in_idvsb'] ?? '-') . "') tidak terdaftar di database Praya.\n" .
+                    "2. No. Request Stuffing ('" . ($param['in_nostuf'] ?? '-') . "') tidak valid / belum terbit nota.\n" .
+                    "3. Akun Customer PBM ('" . ($param['in_accpbm'] ?? '-') . "') tidak terdaftar di PConnect / Master PBM.\n" .
+                    "4. Kode Pelabuhan Tujuan POD ('" . ($param['in_pod'] ?? '-') . "') tidak ditemukan.";
             }
 
             return [
@@ -1265,6 +1265,7 @@ class DeliveryKeTpkRepoService
                 ],
                 'message' => $userMsg,
                 'debug_param' => $param ?? null,
+
             ];
         }
     }
