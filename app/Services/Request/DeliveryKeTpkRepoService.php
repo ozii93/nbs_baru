@@ -1223,7 +1223,8 @@ class DeliveryKeTpkRepoService
                         'code' => 400,
                         'msg' => $msg,
                     ],
-                    'message' => $msg != '' ? $msg : 'Gagal memproses data ke Praya/TPK'
+                    'message' => $msg != '' ? $msg : 'Gagal memproses data ke Praya/TPK',
+                    'debug_param' => $param,
                 ];
             }
         } catch (Exception $th) {
@@ -1234,8 +1235,13 @@ class DeliveryKeTpkRepoService
                     'code' => $th->getCode() != '' ? $th->getCode() : 500,
                 ],
                 'data' => null,
-                'err_detail' => $th,
-                'message' => $th->getMessage() != '' ? $th->getMessage() : 'Terjadi Kesalahan Saat Input Data, Harap Coba lagi!'
+                'err_detail' => [
+                    'file' => $th->getFile(),
+                    'line' => $th->getLine(),
+                    'message' => $th->getMessage(),
+                ],
+                'message' => $th->getMessage() != '' ? $th->getMessage() : 'Terjadi Kesalahan Saat Input Data, Harap Coba lagi!',
+                'debug_param' => $param ?? null,
             ];
         }
     }

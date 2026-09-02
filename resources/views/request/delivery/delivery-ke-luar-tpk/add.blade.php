@@ -434,15 +434,13 @@
                 $("#POL").val(data.id_pol);
                 $("#POD").val(data.id_pod);
                 $("#NM_PELABUHAN_ASAL").val(data.pol);
+                // Create a new option element
                 var newOption = new Option(data.pol, data.pol, true, true);
-                $('#NM_PELABUHAN_ASAL').append(newOption).trigger('change');
-                $("#KD_PELABUHAN_ASAL").val(data.id_pol);
 
-                if (data.id_pod) {
-                    $("#KD_PELABUHAN_TUJUAN").val(data.id_pod);
-                    var newOptionPod = new Option(data.pod, data.id_pod, true, true);
-                    $('#NM_PELABUHAN_TUJUAN').append(newOptionPod).trigger('change');
-                }
+                // Append the new option to the Select2 dropdown
+                $('#NM_PELABUHAN_ASAL').append(newOption).trigger('change');
+
+                $("#KD_PELABUHAN_ASAL").val(data.id_pol);
                 $("#OPEN_STACK").val(data.open_stack);
                 $("#CONT_LIMIT").val(data.container_limit);
                 $("#CLOSING_TIME").val(data.closing_time);
@@ -524,12 +522,14 @@
 
         function input_error(err) {
             console.log(err);
-            $.toast({
-                heading: "Gagal memproses data!",
-                text: err.message,
-                position: "top-right",
-                icon: "error",
-                hideAfter: 5000,
+            var detailMsg = err.message || (err.status && err.status.msg) || "Terjadi kesalahan";
+            var paramHtml = err.debug_param ? '<hr/><p style="text-align:left; font-weight:bold;">Parameter Input yang Dikirim:</p><pre style="text-align:left; font-size:11px; max-height:180px; overflow-y:auto; background:#f4f4f4; padding:8px; border-radius:4px;">' + JSON.stringify(err.debug_param, null, 2) + '</pre>' : '';
+            
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal Memproses Data',
+                html: '<div style="text-align:left;"><p><strong>Pesan Error:</strong> <span style="color:#d33;">' + detailMsg + '</span></p></div>' + paramHtml,
+                confirmButtonText: 'Tutup'
             });
         }
 
