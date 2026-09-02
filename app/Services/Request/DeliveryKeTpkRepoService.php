@@ -23,9 +23,9 @@ class DeliveryKeTpkRepoService
     public function dataDeliveryLuar($request)
     {
 
-        $from       = $request->has('from') ? $request->from : null;
-        $to         = $request->has('to') ? $request->to : null;
-        $no_req    = isset($request->search['value']) ? $request->search['value'] : null; //$request->no_req;
+        $from = $request->has('from') ? $request->from : null;
+        $to = $request->has('to') ? $request->to : null;
+        $no_req = isset($request->search['value']) ? $request->search['value'] : null; //$request->no_req;
         // $id_yard    =    session()->get('IDYARD_STORAGE"];     ')
         // if (isset($from) || isset($to) || isset($no_req)) {
         if (($no_req == NULL) && (isset($from)) && (isset($to))) {
@@ -70,10 +70,10 @@ class DeliveryKeTpkRepoService
 
     function view($noReq)
     {
-        $query_request    = "SELECT REQUEST_DELIVERY.KETERANGAN, request_delivery.DELIVERY_KE, REQUEST_DELIVERY.NO_REQUEST, TO_CHAR(REQUEST_DELIVERY.TGL_REQUEST_DELIVERY,'dd/mm/yyyy') TGL_REQUEST_DELIVERY, emkl.NM_PBM AS NAMA_EMKL, REQUEST_DELIVERY.VESSEL, REQUEST_DELIVERY.VOYAGE, REQUEST_DELIVERY.PEB, REQUEST_DELIVERY.NPE
+        $query_request = "SELECT REQUEST_DELIVERY.KETERANGAN, request_delivery.DELIVERY_KE, REQUEST_DELIVERY.NO_REQUEST, TO_CHAR(REQUEST_DELIVERY.TGL_REQUEST_DELIVERY,'dd/mm/yyyy') TGL_REQUEST_DELIVERY, emkl.NM_PBM AS NAMA_EMKL, REQUEST_DELIVERY.VESSEL, REQUEST_DELIVERY.VOYAGE, REQUEST_DELIVERY.PEB, REQUEST_DELIVERY.NPE
         FROM REQUEST_DELIVERY INNER JOIN V_MST_PBM emkl ON REQUEST_DELIVERY.KD_EMKL = emkl.KD_PBM
         WHERE REQUEST_DELIVERY.NO_REQUEST = '$noReq'";
-        $row_request    = DB::connection('uster')->selectOne($query_request);
+        $row_request = DB::connection('uster')->selectOne($query_request);
 
         $query_list = "SELECT MASTER_CONTAINER.*, CONTAINER_DELIVERY.*
 						  FROM MASTER_CONTAINER
@@ -87,20 +87,20 @@ class DeliveryKeTpkRepoService
 						       AND HISTORY_CONTAINER.KEGIATAN = 'REQUEST DELIVERY'
 						 WHERE CONTAINER_DELIVERY.NO_REQUEST = '$noReq'
 						 ORDER BY TGL_UPDATE ASC";
-        $result_table =  DB::connection('uster')->select($query_list);
+        $result_table = DB::connection('uster')->select($query_list);
 
-        return  [
-            "row_request" =>  $row_request,
-            "result_table" =>  $result_table,
+        return [
+            "row_request" => $row_request,
+            "result_table" => $result_table,
         ];
     }
 
     function edit($no_req, $no_req2)
     {
-        $kd_cbg  = 5;
+        $kd_cbg = 5;
         $q_ceknota = "SELECT NO_REQUEST, STATUS, LUNAS FROM NOTA_DELIVERY WHERE NO_REQUEST = '$no_req' AND STATUS <> 'BATAL'";
 
-        $rwc       = DB::connection('uster')->selectOne($q_ceknota);
+        $rwc = DB::connection('uster')->selectOne($q_ceknota);
         // dd($rwc);
 
         // if ($rwc->no_request != NULL && $rwc->lunas == 'YES') {
@@ -108,7 +108,7 @@ class DeliveryKeTpkRepoService
         // header('Location: '.HOME.APPID);
         // } else {
 
-        $query_request    = "SELECT
+        $query_request = "SELECT
                                 request_delivery.NO_REQ_STUFFING,
                                 request_delivery.PEB,
                                 request_delivery.REQUEST_BY,
@@ -147,7 +147,7 @@ class DeliveryKeTpkRepoService
                                     --LEFT JOIN v_mst_pelabuhan pel_asal ON request_delivery.KD_PELABUHAN_ASAL = pel_asal.KD_PELABUHAN
                                     --LEFT JOIN v_mst_pelabuhan pel_tujuan ON request_delivery.KD_PELABUHAN_TUJUAN = pel_tujuan.KD_PELABUHAN
                                 WHERE REQUEST_DELIVERY.NO_REQUEST = '$no_req'";
-        $row_request    = DB::connection('uster')->selectOne($query_request);
+        $row_request = DB::connection('uster')->selectOne($query_request);
 
         //debug($row_request);die;
         return [
@@ -163,10 +163,10 @@ class DeliveryKeTpkRepoService
     {
         //$arrPost    = $request->
         //bug ($request->die        $NO_BOOKING = $request->NO_BOOKING;
-        $KD_PBM     = $request->KD_PBM;
-        $NO_UKK        = $request->NO_UKK;
+        $KD_PBM = $request->KD_PBM;
+        $NO_UKK = $request->NO_UKK;
         //$TYPE	    = $request->TYPE;
-        $_HARI      = 4;
+        $_HARI = 4;
 
         echo "Y";
         die();
@@ -256,44 +256,45 @@ class DeliveryKeTpkRepoService
 
     function editDo($request)
     {
-        DB::beginTransaction();;
+        DB::beginTransaction();
+        ;
         try {
-            $ID_USER                = session()->get("LOGGED_STORAGE");
-            $NM_USER                = session()->get("NAME");
-            $ID_YARD                = session()->get("IDYARD_STORAGE");
-            $NM_USER                = session()->get("NAME");
-            $KD_PELANGGAN          = $request->KD_PELANGGAN;
-            $KD_PELANGGAN2          = $request->KD_PELANGGAN2;
-            $NO_REQUEST2              = $request->NO_REQUEST2;
-            $NO_REQUEST              = $request->NO_REQUEST;
-            $NO_BOOKING            = $request->NO_BOOKING;
-            $TGL_REQ                = $request->TGL_REQ;
-            $PEB                    = $request->NO_PEB;
-            $NPE                     = $request->NO_NPE;
-            $NO_RO                 = $request->NO_RO;
-            $KETERANGAN            = $request->KETERANGAN;
-            $SHIFT_RFR                = $request->SHIFT_RFR;
-            $TGL_MUAT                = $request->TGL_MUAT;
-            $TGL_STACKING            = $request->TGL_STACKING;
+            $ID_USER = session()->get("LOGGED_STORAGE");
+            $NM_USER = session()->get("NAME");
+            $ID_YARD = session()->get("IDYARD_STORAGE");
+            $NM_USER = session()->get("NAME");
+            $KD_PELANGGAN = $request->KD_PELANGGAN;
+            $KD_PELANGGAN2 = $request->KD_PELANGGAN2;
+            $NO_REQUEST2 = $request->NO_REQUEST2;
+            $NO_REQUEST = $request->NO_REQUEST;
+            $NO_BOOKING = $request->NO_BOOKING;
+            $TGL_REQ = $request->TGL_REQ;
+            $PEB = $request->NO_PEB;
+            $NPE = $request->NO_NPE;
+            $NO_RO = $request->NO_RO;
+            $KETERANGAN = $request->KETERANGAN;
+            $SHIFT_RFR = $request->SHIFT_RFR;
+            $TGL_MUAT = $request->TGL_MUAT;
+            $TGL_STACKING = $request->TGL_STACKING;
             //kapal
-            $TGL_BERANGKAT         = $request->TGL_BERANGKAT;
-            $KD_PELABUHAN_ASAL     = $request->KD_PELABUHAN_ASAL;
-            $KD_PELABUHAN_TUJUAN      = $request->KD_PELABUHAN_TUJUAN;
-            $NM_KAPAL               = $request->NM_KAPAL;
-            $KD_KAPAL                 = $request->KD_KAPAL;
-            $VOYAGE_IN             = $request->VOYAGE_IN;
-            $VOYAGE_OUT             = $request->VOYAGE_OUT;
-            $NO_UKK                = $request->NO_UKK;
-            $ETD                     = $request->ETD;
-            $ETA                     = $request->ETA;
-            $CALL_SIGN               = $request->CALL_SIGN;
-            $NM_AGEN                 = $request->NM_AGEN;
-            $KD_AGEN                 = $request->KD_AGEN;
-            $VOYAGE                 = $request->VOYAGE;
+            $TGL_BERANGKAT = $request->TGL_BERANGKAT;
+            $KD_PELABUHAN_ASAL = $request->KD_PELABUHAN_ASAL;
+            $KD_PELABUHAN_TUJUAN = $request->KD_PELABUHAN_TUJUAN;
+            $NM_KAPAL = $request->NM_KAPAL;
+            $KD_KAPAL = $request->KD_KAPAL;
+            $VOYAGE_IN = $request->VOYAGE_IN;
+            $VOYAGE_OUT = $request->VOYAGE_OUT;
+            $NO_UKK = $request->NO_UKK;
+            $ETD = $request->ETD;
+            $ETA = $request->ETA;
+            $CALL_SIGN = $request->CALL_SIGN;
+            $NM_AGEN = $request->NM_AGEN;
+            $KD_AGEN = $request->KD_AGEN;
+            $VOYAGE = $request->VOYAGE;
 
 
             //==================update uster=========================
-            $query_req     = DB::connection('uster')
+            $query_req = DB::connection('uster')
                 ->table('request_delivery')
                 ->where('NO_REQUEST', $NO_REQUEST)
                 ->update([
@@ -304,7 +305,8 @@ class DeliveryKeTpkRepoService
                     'PEB' => $PEB,
                     'NPE' => $NPE,
                     'NO_RO' => $NO_RO
-                ]);;
+                ]);
+            ;
 
 
 
@@ -325,7 +327,8 @@ class DeliveryKeTpkRepoService
                     'PELABUHAN_TUJUAN' => $KD_PELABUHAN_TUJUAN,
                     'VOYAGE' => $VOYAGE,
                     'CALL_SIGN' => $CALL_SIGN
-                ]);;
+                ]);
+            ;
 
             DB::commit();
             return [
@@ -351,8 +354,8 @@ class DeliveryKeTpkRepoService
     function contDelivery($request)
     {
         // dd($request);
-        $no_cont        = strtoupper($request->term);
-        $jn_repo        = strtoupper($request->jn_repo);
+        $no_cont = strtoupper($request->term);
+        $jn_repo = strtoupper($request->jn_repo);
 
         if ($jn_repo == 'EMPTY') {
             $result = DB::connection('uster')->table('MASTER_CONTAINER as a')
@@ -465,8 +468,8 @@ class DeliveryKeTpkRepoService
     function carrierPraya($request)
     {
         // dd($request);
-        $voyage     = $request->voyage;
-        $term       = strtoupper($request->term);
+        $voyage = $request->voyage;
+        $term = strtoupper($request->term);
         try {
             // $json = getDataFromUrlGuzzle(env('PRAYA_API_TOS') . "/api/getOperator?orgId=" . env('PRAYA_ITPK_PNK_ORG_ID') . "&terminalId=" . env('PRAYA_ITPK_PNK_TERMINAL_ID') . "&voyage=" . $voyage . "&search=" . $term);
             // $json = $this->prayaServices->getDatafromUrl(env('PRAYA_API_TOS') . "/api/getOperator?orgId=" . env('PRAYA_ITPK_PNK_ORG_ID') . "&terminalId=" . env('PRAYA_ITPK_PNK_TERMINAL_ID') . "&voyage=" . $voyage . "&search=" . $term);
@@ -492,41 +495,42 @@ class DeliveryKeTpkRepoService
     function addCont($request)
     {
 
-        DB::beginTransaction();;
+        DB::beginTransaction();
+        ;
         try {
-            $nm_user        = session()->get("NAME");
-            $no_cont        = $request->NO_CONT;
-            $no_req         = $request->NO_REQ;
-            $no_req2        = $request->NO_REQ2;
-            $status         = $request->STATUS;
-            $hz             = $request->HZ;
-            $keterangan     = $request->KETERANGAN;
-            $no_seal        = $request->NO_SEAL;
-            $berat          = $request->BERAT;
-            $via            = $request->VIA;
-            $komoditi       = $request->KOMODITI;
-            $kd_komoditi    = $request->KD_KOMODITI;
-            $size           = $request->SIZE;
-            $tipe           = $request->TIPE;
-            $status         = $request->STATUS;
-            $no_booking     = $request->NO_BOOKING;
-            $jn_repo        = $request->JN_REPO;
-            $ex_pmb         = $request->EX_PMB;
-            $no_ukk         = $request->NO_UKK;
-            $tgl_delivery   = $request->tgl_delivery;
-            $imoclass       = $request->IMO;
-            $unnumber       = $request->UNNUMBER;
-            $height         = $request->HEIGHT;
-            $temperature    = $request->TEMP;
-            $carrier        = $request->CARRIER;
-            $oh_size        = $request->OH;
-            $ow_size        = $request->OW;
-            $ol_size        = $request->OL;
-            $id_user        = session()->get("LOGGED_STORAGE");
-            $id_yard_       = session()->get("IDYARD_STORAGE");
-            $asal           = $request->asal;
-            $tgl_stack      = $request->tgl_stack;
-            $cont_limit     = $request->CONT_LIMIT;
+            $nm_user = session()->get("NAME");
+            $no_cont = $request->NO_CONT;
+            $no_req = $request->NO_REQ;
+            $no_req2 = $request->NO_REQ2;
+            $status = $request->STATUS;
+            $hz = $request->HZ;
+            $keterangan = $request->KETERANGAN;
+            $no_seal = $request->NO_SEAL;
+            $berat = $request->BERAT;
+            $via = $request->VIA;
+            $komoditi = $request->KOMODITI;
+            $kd_komoditi = $request->KD_KOMODITI;
+            $size = $request->SIZE;
+            $tipe = $request->TIPE;
+            $status = $request->STATUS;
+            $no_booking = $request->NO_BOOKING;
+            $jn_repo = $request->JN_REPO;
+            $ex_pmb = $request->EX_PMB;
+            $no_ukk = $request->NO_UKK;
+            $tgl_delivery = $request->tgl_delivery;
+            $imoclass = $request->IMO;
+            $unnumber = $request->UNNUMBER;
+            $height = $request->HEIGHT;
+            $temperature = $request->TEMP;
+            $carrier = $request->CARRIER;
+            $oh_size = $request->OH;
+            $ow_size = $request->OW;
+            $ol_size = $request->OL;
+            $id_user = session()->get("LOGGED_STORAGE");
+            $id_yard_ = session()->get("IDYARD_STORAGE");
+            $asal = $request->asal;
+            $tgl_stack = $request->tgl_stack;
+            $cont_limit = $request->CONT_LIMIT;
 
             $bp_id = $ex_pmb;
             $returnMsg = '';
@@ -541,7 +545,7 @@ class DeliveryKeTpkRepoService
             $cek_req_satu_kapal = "select no_booking from container_delivery, request_delivery where container_delivery.no_request = request_delivery.no_request
 					and no_container = '$no_cont' and no_booking = '$no_booking' and aktif = 'Y'";
             $rw_cekkpl = DB::connection('uster')->selectOne($cek_req_satu_kapal);
-            $nobokk_lama =  $rw_cekkpl->no_booking ?? null;
+            $nobokk_lama = $rw_cekkpl->no_booking ?? null;
             if ($nobokk_lama != NULL) {
                 $returnMsg = 'EXIST_DEL_BY_BOOKING';
             }
@@ -564,13 +568,13 @@ class DeliveryKeTpkRepoService
                 $returnMsg = "EXIST_STRIP";
             }
 
-            $query_cek_cont            = "SELECT NO_BOOKING, COUNTER
+            $query_cek_cont = "SELECT NO_BOOKING, COUNTER
 											FROM  MASTER_CONTAINER
 											WHERE NO_CONTAINER ='$no_cont'
 											";
-            $row_cek_cont     = DB::connection('uster')->selectOne($query_cek_cont);
-            $cek_book         = $row_cek_cont->no_booking ?? null;
-            $cek_counter    = $row_cek_cont->counter ?? null;
+            $row_cek_cont = DB::connection('uster')->selectOne($query_cek_cont);
+            $cek_book = $row_cek_cont->no_booking ?? null;
+            $cek_counter = $row_cek_cont->counter ?? null;
 
             //if($cek_book == NULL){
             $q_update_book = "UPDATE MASTER_CONTAINER SET NO_BOOKING = '$no_booking' WHERE NO_CONTAINER = '$no_cont'";
@@ -597,21 +601,21 @@ class DeliveryKeTpkRepoService
                 DB::connection('uster')->statement($q_update_book2);
             }
 
-            $query_cek        = "SELECT b.NO_CONTAINER, b.LOCATION --, NVL((), '') as STATUS
+            $query_cek = "SELECT b.NO_CONTAINER, b.LOCATION --, NVL((), '') as STATUS
                                 FROM MASTER_CONTAINER b
                                 WHERE b.NO_CONTAINER = '$no_cont'";
             $query_cek2 = "SELECT NO_CONTAINER FROM CONTAINER_DELIVERY WHERE NO_CONTAINER = '$no_cont' AND AKTIF = 'Y'";
 
-            $row_cek        = DB::connection('uster')->selectOne($query_cek);
+            $row_cek = DB::connection('uster')->selectOne($query_cek);
 
-            $row_cek2        = DB::connection('uster')->selectOne($query_cek2);
+            $row_cek2 = DB::connection('uster')->selectOne($query_cek2);
 
-            $no_cont        = $row_cek->no_container;
-            $location        = $row_cek->location;
+            $no_cont = $row_cek->no_container;
+            $location = $row_cek->location;
             if ($asal == 'TPK') {
                 $location = 'IN_YARD';
             }
-            $req_dev        = $row_cek2->no_container ?? null;
+            $req_dev = $row_cek2->no_container ?? null;
             //ECHO $query_cek;
             if (($no_cont <> NULL) && ($location == 'IN_YARD') && ($req_dev <> NULL)) {
                 $returnMsg = "SDH_REQUEST";
@@ -677,11 +681,11 @@ class DeliveryKeTpkRepoService
                 // ===========================================  NBS_OPUS ==============================================//
                 if ($msgout == 'OK1') {
 
-                    $query_cek        = "SELECT a.ID_YARD_AREA FROM placement b, blocking_area a
+                    $query_cek = "SELECT a.ID_YARD_AREA FROM placement b, blocking_area a
                                     WHERE b.ID_BLOCKING_AREA = a.ID
                                     AND b.NO_CONTAINER = '$no_cont'";
-                    $row_cek        = DB::connection('uster')->selectOne($query_cek);
-                    $id_yard        = $row_cek->id_yard_area;
+                    $row_cek = DB::connection('uster')->selectOne($query_cek);
+                    $id_yard = $row_cek->id_yard_area;
 
                     if ($jn_repo == 'EMPTY') {
                         $query_tgl_stack_depo = "SELECT TGL_UPDATE , NO_REQUEST, KEGIATAN
@@ -690,34 +694,34 @@ class DeliveryKeTpkRepoService
 	                                            AND kegiatan IN ('GATE IN','REALISASI STRIPPING','PERPANJANGAN STUFFING','REQUEST STUFFING')
 	                                            ORDER BY TGL_UPDATE DESC";
 
-                        $row_tgl_stack_depo        = DB::connection('uster')->selectOne($query_tgl_stack_depo);
+                        $row_tgl_stack_depo = DB::connection('uster')->selectOne($query_tgl_stack_depo);
                         //$tgl_stack	= $row_tgl_stack_depo["TGL_STACK"];
-                        $ex_keg    = $row_tgl_stack_depo->kegiatan;
-                        $no_re_st    = $row_tgl_stack_depo->no_request;
+                        $ex_keg = $row_tgl_stack_depo->kegiatan;
+                        $no_re_st = $row_tgl_stack_depo->no_request;
                         if ($ex_keg == "REALISASI STRIPPING") {
                             $qtgl_r = "SELECT TGL_REALISASI FROM CONTAINER_STRIPPING WHERE NO_CONTAINER = '$no_cont' AND NO_REQUEST = '$no_re_st'";
                             $rtgl_r = DB::connection('uster')->selectOne($qtgl_r);
                             $start_stack = $rtgl_r->tgl_realisasi;
-                            $asal_cont         = 'DEPO';
+                            $asal_cont = 'DEPO';
                         } else if ($ex_keg == "GATE IN") {
                             $qtgl_r = "SELECT TGL_IN FROM GATE_IN WHERE NO_CONTAINER = '$no_cont' AND NO_REQUEST = '$no_re_st'";
                             $rtgl_r = DB::connection('uster')->selectOne($qtgl_r);
                             $start_stack = $rtgl_r->tgl_in;
-                            $asal_cont         = 'DEPO';
+                            $asal_cont = 'DEPO';
                         } else if ($ex_keg == "PERPANJANGAN STUFFING") {
                             $qtgl_r = "SELECT END_STACK_PNKN FROM CONTAINER_STUFFING WHERE NO_REQUEST = '$no_re_st' AND NO_CONTAINER = '$no_cont'";
                             $rtgl_r = DB::connection('uster')->selectOne($qtgl_r);
                             $start_stack = $rtgl_r->end_stack_pnkn;
-                            $asal_cont         = 'DEPO';
+                            $asal_cont = 'DEPO';
                         } else if ($ex_keg == "REQUEST STUFFING") {
                             $qtgl_r = "SELECT START_PERP_PNKN FROM CONTAINER_STUFFING WHERE NO_REQUEST = '$no_re_st' AND NO_CONTAINER = '$no_cont'";
                             $rtgl_r = DB::connection('uster')->selectOne($qtgl_r);
                             $start_stack = $rtgl_r->start_perp_pnkn;
-                            $asal_cont         = 'DEPO';
+                            $asal_cont = 'DEPO';
                         }
                     } else {
 
-                        $query_cek1        = "SELECT tes.NO_REQUEST,
+                        $query_cek1 = "SELECT tes.NO_REQUEST,
                                     CASE SUBSTR(KEGIATAN,9)
                                         WHEN 'RECEIVING' THEN (SELECT CONCAT('RECEIVING_',a.RECEIVING_DARI) FROM request_receiving a WHERE a.NO_REQUEST = tes.NO_REQUEST)
 										WHEN 'NGAN STUFFING' THEN
@@ -735,52 +739,52 @@ class DeliveryKeTpkRepoService
                                 FROM (SELECT TGL_UPDATE, NO_REQUEST,KEGIATAN FROM history_container WHERE no_container = '$no_cont' and kegiatan IN ('REQUEST RECEIVING','REQUEST STRIPPING','REQUEST STUFFING','REQUEST RELOKASI','PERPANJANGAN STUFFING','PERPANJANGAN STRIPPING','REALISASI STRIPPING', 'REALISASI STUFFING', 'REQUEST DELIVERY','PERP DELIVERY') AND AKTIF IS NULL) tes
                                 WHERE tes.TGL_UPDATE=(SELECT MAX(TGL_UPDATE) FROM history_container WHERE no_container = '$no_cont' and kegiatan IN ('REQUEST RECEIVING','REQUEST STRIPPING','REQUEST STUFFING','REQUEST RELOKASI','PERPANJANGAN STUFFING','PERPANJANGAN STRIPPING','REALISASI STRIPPING', 'REALISASI STUFFING', 'REQUEST DELIVERY','PERP DELIVERY') AND AKTIF IS NULL)
 								ORDER BY KEGIATAN DESC";
-                        $row_cek1        = DB::connection('uster')->selectOne($query_cek1);
-                        $no_request        = $row_cek1->no_request;
-                        $kegiatan        = $row_cek1->kegiatan;
+                        $row_cek1 = DB::connection('uster')->selectOne($query_cek1);
+                        $no_request = $row_cek1->no_request;
+                        $kegiatan = $row_cek1->kegiatan;
 
                         if ($kegiatan == 'RECEIVING_LUAR') {
-                            $query_cek1        = " SELECT SUBSTR(TO_CHAR(b.TGL_IN,'dd/mm/rrrr'),1,10) START_STACK FROM GATE_IN b WHERE b.NO_CONTAINER = '$no_cont' AND b.NO_REQUEST = '$no_request'";
-                            $row_cek1        = DB::connection('uster')->selectOne($query_cek1);
-                            $start_stack    = $row_cek1->start_stack;
-                            $asal_cont         = 'DEPO';
+                            $query_cek1 = " SELECT SUBSTR(TO_CHAR(b.TGL_IN,'dd/mm/rrrr'),1,10) START_STACK FROM GATE_IN b WHERE b.NO_CONTAINER = '$no_cont' AND b.NO_REQUEST = '$no_request'";
+                            $row_cek1 = DB::connection('uster')->selectOne($query_cek1);
+                            $start_stack = $row_cek1->start_stack;
+                            $asal_cont = 'DEPO';
                         } else if ($kegiatan == 'RECEIVING_TPK') {
-                            $query_cek1        = "SELECT TO_CHAR(TGL_BONGKAR,'dd/mm/rrrr') START_STACK FROM container_receiving WHERE NO_CONTAINER = '$no_cont' AND NO_REQUEST = '$no_request'";
-                            $row_cek1        = DB::connection('uster')->selectOne($query_cek1);
-                            $start_stack    = $row_cek1->start_stack;
-                            $asal_cont         = 'TPK';
+                            $query_cek1 = "SELECT TO_CHAR(TGL_BONGKAR,'dd/mm/rrrr') START_STACK FROM container_receiving WHERE NO_CONTAINER = '$no_cont' AND NO_REQUEST = '$no_request'";
+                            $row_cek1 = DB::connection('uster')->selectOne($query_cek1);
+                            $start_stack = $row_cek1->start_stack;
+                            $asal_cont = 'TPK';
                         } else if ($kegiatan == 'STUFFING') {
-                            $query_cek1        = "SELECT SUBSTR(TO_CHAR(TGL_REALISASI,'dd/mm/rrrr'),1,10) START_STACK FROM container_stuffing WHERE NO_CONTAINER = '$no_cont' AND NO_REQUEST = '$no_request'";
-                            $row_cek1        = DB::connection('uster')->selectOne($query_cek1);
-                            $start_stack    = $row_cek1->start_stack;
-                            $asal_cont         = 'DEPO';
+                            $query_cek1 = "SELECT SUBSTR(TO_CHAR(TGL_REALISASI,'dd/mm/rrrr'),1,10) START_STACK FROM container_stuffing WHERE NO_CONTAINER = '$no_cont' AND NO_REQUEST = '$no_request'";
+                            $row_cek1 = DB::connection('uster')->selectOne($query_cek1);
+                            $start_stack = $row_cek1->start_stack;
+                            $asal_cont = 'DEPO';
                         } else if ($kegiatan == 'STRIPPING') {
-                            $query_cek1        = "SELECT SUBSTR(TO_CHAR(TGL_REALISASI,'dd/mm/rrrr'),1,10) START_STACK FROM container_stripping WHERE NO_CONTAINER = '$no_cont' AND NO_REQUEST = '$no_request'";
-                            $row_cek1        = DB::connection('uster')->selectOne($query_cek1);
-                            $start_stack    = $row_cek1->start_stack;
-                            $asal_cont         = 'DEPO';
+                            $query_cek1 = "SELECT SUBSTR(TO_CHAR(TGL_REALISASI,'dd/mm/rrrr'),1,10) START_STACK FROM container_stripping WHERE NO_CONTAINER = '$no_cont' AND NO_REQUEST = '$no_request'";
+                            $row_cek1 = DB::connection('uster')->selectOne($query_cek1);
+                            $start_stack = $row_cek1->start_stack;
+                            $asal_cont = 'DEPO';
                         } else if ($kegiatan == 'DELIVERY') {
-                            $query_cek1        = "SELECT SUBSTR(TO_CHAR(TGL_DELIVERY,'dd/mm/rrrr'),1,10) START_STACK FROM container_delivery WHERE NO_CONTAINER = '$no_cont' AND NO_REQUEST = '$no_request'";
-                            $row_cek1        = DB::connection('uster')->selectOne($query_cek1);
-                            $start_stack    = $row_cek1->start_stack;
-                            $asal_cont         = 'DEPO';
+                            $query_cek1 = "SELECT SUBSTR(TO_CHAR(TGL_DELIVERY,'dd/mm/rrrr'),1,10) START_STACK FROM container_delivery WHERE NO_CONTAINER = '$no_cont' AND NO_REQUEST = '$no_request'";
+                            $row_cek1 = DB::connection('uster')->selectOne($query_cek1);
+                            $start_stack = $row_cek1->start_stack;
+                            $asal_cont = 'DEPO';
                         }
                     }
 
                     if ($asal == 'TPK') {
                         $start_stack = $tgl_stack;
-                        $asal_cont         = 'TPK';
+                        $asal_cont = 'TPK';
 
-                        $query_cek_cont            = "SELECT NO_CONTAINER
+                        $query_cek_cont = "SELECT NO_CONTAINER
 											FROM  MASTER_CONTAINER
 											WHERE NO_CONTAINER ='$no_cont'
 											";
-                        $row_cek_cont     = DB::connection('uster')->selectOne($query_cek_cont);
-                        $cek_cont         = $row_cek_cont->no_container;
+                        $row_cek_cont = DB::connection('uster')->selectOne($query_cek_cont);
+                        $cek_cont = $row_cek_cont->no_container;
 
                         if ($cek_cont == NULL) {
 
-                            $query_insert_mstr    = "INSERT INTO MASTER_CONTAINER(NO_CONTAINER,
+                            $query_insert_mstr = "INSERT INTO MASTER_CONTAINER(NO_CONTAINER,
 																			SIZE_,
 																			TYPE_,
 																			LOCATION, NO_BOOKING, COUNTER)
@@ -853,8 +857,8 @@ class DeliveryKeTpkRepoService
 
     function editContList($request)
     {
-        $no_req    = $request->no_req;
-        $no_req2    = $request->no_req2;
+        $no_req = $request->no_req;
+        $no_req2 = $request->no_req2;
 
 
         $query_list = " SELECT DISTINCT MASTER_CONTAINER.*, CONTAINER_DELIVERY.*, HISTORY_CONTAINER.TGL_UPDATE
@@ -869,7 +873,7 @@ class DeliveryKeTpkRepoService
 				       ORDER BY HISTORY_CONTAINER.TGL_UPDATE ASC";
 
         // dd($query_list);
-        $row_list        = DB::connection('uster')->select($query_list);
+        $row_list = DB::connection('uster')->select($query_list);
 
         return $row_list;
     }
@@ -878,13 +882,13 @@ class DeliveryKeTpkRepoService
     {
         DB::beginTransaction();
         try {
-            $no_cont    = $request->NO_CONT;
-            $no_req        = $request->NO_REQ;
-            $no_req2    = $request->NO_REQ2;
-            $ex_bp        = $request->EX_BP;
+            $no_cont = $request->NO_CONT;
+            $no_req = $request->NO_REQ;
+            $no_req2 = $request->NO_REQ2;
+            $ex_bp = $request->EX_BP;
 
 
-            $query_del_nbs    = "DELETE from BILLING_NBS.req_receiving_d WHERE NO_CONTAINER = '$no_cont' AND ID_REQ = '$no_req2'";
+            $query_del_nbs = "DELETE from BILLING_NBS.req_receiving_d WHERE NO_CONTAINER = '$no_cont' AND ID_REQ = '$no_req2'";
 
             $qves = "SELECT
 			rd.o_vessel,
@@ -898,9 +902,9 @@ class DeliveryKeTpkRepoService
 		WHERE
 			rd.NO_REQUEST = '$no_req'";
             $rves = DB::connection('uster')->selectOne($qves);
-            $vessel  = $rves->o_vessel;
-            $voyage_in  = $rves->o_voyin;
-            $voyage_out  = $rves->o_voyout;
+            $vessel = $rves->o_vessel;
+            $voyage_in = $rves->o_voyin;
+            $voyage_out = $rves->o_voyout;
 
             $vessel_code = $rves->vessel_code;
             $voyage = $rves->voyage;
@@ -921,9 +925,9 @@ class DeliveryKeTpkRepoService
             // echo var_dump($param_b_var);die;
             // $query_ops = "declare begin BILLING_NBS.proc_delete_cont(:v_nocont, :v_req, :flag, :vessel, :voyage, :operatorId, :v_response, :v_msg); end;";
 
-            $query_del    = "DELETE FROM CONTAINER_DELIVERY WHERE NO_CONTAINER = '$no_cont' AND NO_REQUEST = '$no_req'";
+            $query_del = "DELETE FROM CONTAINER_DELIVERY WHERE NO_CONTAINER = '$no_cont' AND NO_REQUEST = '$no_req'";
 
-            $history        = "DELETE FROM history_container
+            $history = "DELETE FROM history_container
 							WHERE NO_CONTAINER = '$no_cont'
 								AND NO_REQUEST = '$no_req'
 								AND KEGIATAN = 'REQUEST DELIVERY'";
@@ -979,10 +983,10 @@ class DeliveryKeTpkRepoService
 
     function pbm($term)
     {
-        $nama            = strtoupper($term);
-        $query           = "SELECT pbm.KD_PBM,pbm.NM_PBM,pbm.ALMT_PBM,pbm.NO_NPWP_PBM,pbm.NO_ACCOUNT_PBM
+        $nama = strtoupper($term);
+        $query = "SELECT pbm.KD_PBM,pbm.NM_PBM,pbm.ALMT_PBM,pbm.NO_NPWP_PBM,pbm.NO_ACCOUNT_PBM
                                 FROM V_MST_PBM pbm where pbm.KD_CABANG='05' AND UPPER(pbm.NM_PBM) LIKE '%$nama%' AND PELANGGAN_AKTIF = '1' AND pbm.ALMT_PBM IS NOT NULL";
-        $result_query    = DB::connection('uster')->select($query);
+        $result_query = DB::connection('uster')->select($query);
         return $result_query;
     }
 
@@ -999,46 +1003,46 @@ class DeliveryKeTpkRepoService
         try {
 
             // debug($request->di;
-            $id_yard_                   = session()->get("IDYARD_STORAGE");
-            $KD_PELANGGAN               = $request->KD_PELANGGAN;
-            $KD_PELANGGAN2                  = $request->KD_PELANGGAN2;
-            $TGL_BERANGKAT              = $request->TGL_BERANGKAT;
-            $TGL_REQ                    = $request->TGL_REQ;
-            $PEB                        = $request->NO_PEB;
-            $NPE                        = $request->NO_NPE;
-            $KD_PELABUHAN_ASAL          = $request->KD_PELABUHAN_ASAL;
-            $KD_PELABUHAN_TUJUAN        = $request->KD_PELABUHAN_TUJUAN;
-            $NM_KAPAL                       = $request->NM_KAPAL;
-            $CALL_SIGN                  = $request->CALL_SIGN;
-            $VOYAGE_IN                  = $request->VOYAGE_IN;
-            $VOYAGE_OUT                     = $request->VOYAGE_OUT;
-            $NO_BOOKING                 = $request->NO_BOOKING;
-            $KETERANGAN                 = $request->KETERANGAN;
-            $ID_USER                    = session()->get("LOGGED_STORAGE");
-            $NM_USER                    = session()->get("NAME");
-            $ID_YARD                    = session()->get("IDYARD_STORAGE");
-            $NM_USER                    = session()->get("NAME");
-            $NO_UKK                     = $request->NO_UKK;
-            $SHIFT_RFR                  = $request->SHIFT_RFR;
-            $DI                         = $request->DI;
-            $TGL_MUAT                   = $request->TGL_MUAT;
-            $TGL_STACKING               = $request->TGL_STACKING;
-            $NO_RO                      = $request->NO_RO;
-            $JN_REPO                    = $request->JN_REPO;
-            $NO_STUFF                   = $request->NO_REQ_STUFF;
-            $TGL_MULAI                  = $request->TGL_MULAI;
-            $TGL_NANTI                  = $request->TGL_NANTI;
-            $NO_ACCOUNT_PBM             = $request->NO_ACCOUNT_PBM;
-            $KD_KAPAL                   = $request->KD_KAPAL;
-            $ETD                        = $request->ETD;
-            $ETA                        = $request->ETA;
-            $OPEN_STACK                 = $request->OPEN_STACK;
-            $NM_AGEN                    = $request->NM_AGEN;
-            $KD_AGEN                    = $request->KD_AGEN;
-            $CONT_LIMIT                 = $request->CONT_LIMIT;
-            $CLOSING_TIME               = $request->CLOSING_TIME;
-            $CLOSING_TIME_DOC           = $request->CLOSING_TIME_DOC;
-            $VOYAGE                     = $request->VOYAGE;
+            $id_yard_ = session()->get("IDYARD_STORAGE");
+            $KD_PELANGGAN = $request->KD_PELANGGAN;
+            $KD_PELANGGAN2 = $request->KD_PELANGGAN2;
+            $TGL_BERANGKAT = $request->TGL_BERANGKAT;
+            $TGL_REQ = $request->TGL_REQ;
+            $PEB = $request->NO_PEB;
+            $NPE = $request->NO_NPE;
+            $KD_PELABUHAN_ASAL = $request->KD_PELABUHAN_ASAL;
+            $KD_PELABUHAN_TUJUAN = $request->KD_PELABUHAN_TUJUAN;
+            $NM_KAPAL = $request->NM_KAPAL;
+            $CALL_SIGN = $request->CALL_SIGN;
+            $VOYAGE_IN = $request->VOYAGE_IN;
+            $VOYAGE_OUT = $request->VOYAGE_OUT;
+            $NO_BOOKING = $request->NO_BOOKING;
+            $KETERANGAN = $request->KETERANGAN;
+            $ID_USER = session()->get("LOGGED_STORAGE");
+            $NM_USER = session()->get("NAME");
+            $ID_YARD = session()->get("IDYARD_STORAGE");
+            $NM_USER = session()->get("NAME");
+            $NO_UKK = $request->NO_UKK;
+            $SHIFT_RFR = $request->SHIFT_RFR;
+            $DI = $request->DI;
+            $TGL_MUAT = $request->TGL_MUAT;
+            $TGL_STACKING = $request->TGL_STACKING;
+            $NO_RO = $request->NO_RO;
+            $JN_REPO = $request->JN_REPO;
+            $NO_STUFF = $request->NO_REQ_STUFF;
+            $TGL_MULAI = $request->TGL_MULAI;
+            $TGL_NANTI = $request->TGL_NANTI;
+            $NO_ACCOUNT_PBM = $request->NO_ACCOUNT_PBM;
+            $KD_KAPAL = $request->KD_KAPAL;
+            $ETD = $request->ETD;
+            $ETA = $request->ETA;
+            $OPEN_STACK = $request->OPEN_STACK;
+            $NM_AGEN = $request->NM_AGEN;
+            $KD_AGEN = $request->KD_AGEN;
+            $CONT_LIMIT = $request->CONT_LIMIT;
+            $CLOSING_TIME = $request->CLOSING_TIME;
+            $CLOSING_TIME_DOC = $request->CLOSING_TIME_DOC;
+            $VOYAGE = $request->VOYAGE;
 
             $pdo = DB::connection('uster')->getPdo();
 

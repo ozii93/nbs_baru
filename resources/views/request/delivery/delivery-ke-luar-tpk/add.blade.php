@@ -66,14 +66,13 @@
                                     </div>
                                     <div class="col-md-4">
                                         <input class="form-control" id="NO_REQ_STUFF" name="NO_REQ_STUFF" type="text"
-                                            value="" placeholder="Contoh: STF0826000026" />
+                                            value="" />
                                     </div>
                                     <div class="col-md-2 py-2">
                                         <label for="tb-fname">No P.E.B : </label>
                                     </div>
                                     <div class="col-md-4">
-                                        <input class="form-control" id="NO_PEB" name="NO_PEB" type="text"
-                                            value="" />
+                                        <input class="form-control" id="NO_PEB" name="NO_PEB" type="text" value="" />
                                         <input class="form-control" id="id_KD_CABANG" name="KD_CABANG" type="hidden"
                                             value="{$KD_CABANG}" />
                                     </div>
@@ -83,8 +82,7 @@
                                         <label for="tb-fname">No. N.P.E : </label>
                                     </div>
                                     <div class="col-md-4">
-                                        <input class="form-control" id="NO_NPE" name="NO_NPE" type="text"
-                                            value="" />
+                                        <input class="form-control" id="NO_NPE" name="NO_NPE" type="text" value="" />
                                     </div>
 
                                 </div>
@@ -93,8 +91,7 @@
                                         <label for="tb-fname">No RO : </label>
                                     </div>
                                     <div class="col-md-4">
-                                        <input class="form-control" id="NO_RO" name="NO_RO" type="text"
-                                            value="" />
+                                        <input class="form-control" id="NO_RO" name="NO_RO" type="text" value="" />
                                     </div>
                                     <div class="col-md-2 py-2">
                                         <label for="tb-fname">E.M.K.L : </label>
@@ -102,26 +99,25 @@
                                     <div class="col-md-4">
                                         <input class="form-control" id="KD_PELANGGAN" name="KD_PELANGGAN" type="hidden"
                                             value="" readonly />
-                                        <input class="form-control" id="NPWP" name="NPWP" type="hidden"
-                                            value="" readonly />
+                                        <input class="form-control" id="NPWP" name="NPWP" type="hidden" value="" readonly />
                                         <input class="form-control" id="NO_ACCOUNT_PBM" name="NO_ACCOUNT_PBM" type="hidden"
                                             value="" readonly />
-                                        <input class="form-control" id="ALAMAT" name="ALAMAT" type="hidden"
-                                            value="" readonly />
+                                        <input class="form-control" id="ALAMAT" name="ALAMAT" type="hidden" value=""
+                                            readonly />
                                         <select class="form-control" name="NM_PELANGGAN" id="NM_PELANGGAN"></select>
                                     </div>
                                     <div class="col-md-2 py-2" style="display: none;">
                                         <label for="tb-fname">Penumpukan Empty Oleh : </label>
                                     </div>
                                     <div class="col-md-4" style="display: none;">
-                                        <input class="form-control" id="KD_PELANGGAN2" name="KD_PELANGGAN2"
-                                            type="hidden" value="" readonly />
-                                        <input class="form-control" id="NM_PELANGGAN2" name="NM_PELANGGAN2"
-                                            type="text" value="" title="Autocomplete" class="kdemkl2" />
-                                        <input class="form-control" id="NPWP2" name="NPWP2" type="hidden"
+                                        <input class="form-control" id="KD_PELANGGAN2" name="KD_PELANGGAN2" type="hidden"
                                             value="" readonly />
-                                        <input class="form-control" id="ALAMAT2" name="ALAMAT2" type="hidden"
-                                            value="" readonly />
+                                        <input class="form-control" id="NM_PELANGGAN2" name="NM_PELANGGAN2" type="text"
+                                            value="" title="Autocomplete" class="kdemkl2" />
+                                        <input class="form-control" id="NPWP2" name="NPWP2" type="hidden" value=""
+                                            readonly />
+                                        <input class="form-control" id="ALAMAT2" name="ALAMAT2" type="hidden" value=""
+                                            readonly />
                                     </div>
                                 </div>
                                 <div class="row">
@@ -130,22 +126,18 @@
                                         <label for="tb-fname">Nama Kapal : </label>
                                     </div>
                                     <div class="col-md-4">
-                                        <input class="form-control" id="KD_KAPAL" name="KD_KAPAL" type="hidden"
-                                            value="" />
+                                        <input class="form-control" id="KD_KAPAL" name="KD_KAPAL" type="hidden" value="" />
                                         <input class="form-control" id="CALL_SIGN" name="CALL_SIGN" type="hidden"
                                             value="" />
                                         <!-- <input class="form-control" id="NM_KAPAL" name="NM_KAPAL" type="text" value="" /> -->
                                         <select class="form-control" name="NM_KAPAL" id="NM_KAPAL"></select>
-                                        <input class="form-control" id="TGL_BERANGKAT" name="TGL_BERANGKAT"
-                                            type="hidden" value="" />
+                                        <input class="form-control" id="TGL_BERANGKAT" name="TGL_BERANGKAT" type="hidden"
+                                            value="" />
                                         <input class="form-control" id="TGL_STACKING" name="TGL_STACKING" type="hidden"
                                             value="" />
-                                        <input class="form-control" id="TGL_MUAT" name="TGL_MUAT" type="hidden"
-                                            value="" />
-                                        <input class="form-control" id="POD" name="POD" type="hidden"
-                                            value="" />
-                                        <input class="form-control" id="POL" name="POL" type="hidden"
-                                            value="" />
+                                        <input class="form-control" id="TGL_MUAT" name="TGL_MUAT" type="hidden" value="" />
+                                        <input class="form-control" id="POD" name="POD" type="hidden" value="" />
+                                        <input class="form-control" id="POL" name="POL" type="hidden" value="" />
                                         <input class="form-control" id="CLOSING_TIME" name="CLOSING_TIME" type="hidden"
                                             value="" />
                                         <input class="form-control" id="CLOSING_TIME_DOC" name="CLOSING_TIME_DOC"
@@ -157,16 +149,16 @@
                                     <div class="col-md-4">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <input class="form-control" id="VOYAGE_IN" name="VOYAGE_IN"
-                                                    type="text" value="" readonly />
+                                                <input class="form-control" id="VOYAGE_IN" name="VOYAGE_IN" type="text"
+                                                    value="" readonly />
                                             </div>
                                             <div class="col-md-6">
-                                                <input class="form-control" id="VOYAGE_OUT" name="VOYAGE_OUT"
-                                                    type="text" value="" readonly />
+                                                <input class="form-control" id="VOYAGE_OUT" name="VOYAGE_OUT" type="text"
+                                                    value="" readonly />
                                             </div>
                                         </div>
-                                        <input class="form-control" id="VOYAGE" name="VOYAGE" type="hidden"
-                                            value="" readonly />
+                                        <input class="form-control" id="VOYAGE" name="VOYAGE" type="hidden" value=""
+                                            readonly />
                                         <input class="form-control" id="OPEN_STACK" name="OPEN_STACK" type="hidden"
                                             value="" />
                                         <input class="form-control" id="CONT_LIMIT" name="CONT_LIMIT" type="hidden"
@@ -179,15 +171,13 @@
                                         <label for="tb-fname">ETD : </label>
                                     </div>
                                     <div class="col-md-4">
-                                        <input class="form-control" value="" id="ETD" name="ETD"
-                                            type="text" readonly />
+                                        <input class="form-control" value="" id="ETD" name="ETD" type="text" readonly />
                                     </div>
                                     <div class="col-md-2 py-2">
                                         <label for="tb-fname">ETA : </label>
                                     </div>
                                     <div class="col-md-4">
-                                        <input class="form-control" value="" id="ETA" name="ETA"
-                                            type="text" readonly />
+                                        <input class="form-control" value="" id="ETA" name="ETA" type="text" readonly />
                                     </div>
                                 </div>
 
@@ -196,18 +186,16 @@
                                         <label for="tb-fname">Nama Agen : </label>
                                     </div>
                                     <div class="col-md-4">
-                                        <input class="form-control" id="KD_AGEN" name="KD_AGEN" type="hidden"
-                                            value="" />
-                                        <input class="form-control" id="NM_AGEN" name="NM_AGEN" type="text"
-                                            value="" readonly />
+                                        <input class="form-control" id="KD_AGEN" name="KD_AGEN" type="hidden" value="" />
+                                        <input class="form-control" id="NM_AGEN" name="NM_AGEN" type="text" value=""
+                                            readonly />
                                     </div>
                                     <div class="col-md-2 py-2">
                                         <label for="tb-fname">No PKK : </label>
                                     </div>
                                     <div class="col-md-4">
-                                        <input class="form-control" id="NO_UKK" name="NO_UKK" type="text"
-                                            value="" readonly maxlength="16" title="Autocomplete"
-                                            class="pkkkapal" />
+                                        <input class="form-control" id="NO_UKK" name="NO_UKK" type="text" value="" readonly
+                                            maxlength="16" title="Autocomplete" class="pkkkapal" />
                                     </div>
                                 </div>
 
@@ -217,8 +205,8 @@
                                         <label for="tb-fname">No Booking : </label>
                                     </div>
                                     <div class="col-md-4">
-                                        <input class="form-control" id="NO_BOOKING" name="NO_BOOKING" type="text"
-                                            value="" maxlength="16" readonly />
+                                        <input class="form-control" id="NO_BOOKING" name="NO_BOOKING" type="text" value=""
+                                            maxlength="16" readonly />
                                     </div>
                                     <div class="col-md-2 py-2">
                                         <label for="tb-fname">Pelabuhan Asal : </label>
@@ -249,7 +237,8 @@
                                         <label for="tb-fname">Keterangan : </label>
                                     </div>
                                     <div class="col-md-4">
-                                        <textarea class="form-control" id="KETERANGAN" name="KETERANGAN" cols="40" rows="1"></textarea>
+                                        <textarea class="form-control" id="KETERANGAN" name="KETERANGAN" cols="40"
+                                            rows="1"></textarea>
                                     </div>
                                 </div>
 
@@ -259,8 +248,8 @@
                                         <label for="tb-fname">Bayar Reefer : </label>
                                     </div>
                                     <div class="col-md-4">
-                                        <input class="form-control" disabled id="SHIFT_RFR" name="SHIFT_RFR"
-                                            type="text" value="2" />
+                                        <input class="form-control" disabled id="SHIFT_RFR" name="SHIFT_RFR" type="text"
+                                            value="2" />
                                     </div>
                                     <div class="col-md-2 py-2">
                                         <label for="tb-fname">Calculator Shift Reefer : </label>
@@ -299,11 +288,11 @@
 @section('pages-js')
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $("#NO_REQ_STUFF").prop('disabled', true);
             $("#NO_REQ_STUFF").css("background-color", "#F0F0F0");
 
-            $("#JN_REPO").change(function() {
+            $("#JN_REPO").change(function () {
 
                 if ($("#JN_REPO").val() == "EKS_STUFFING") {
                     //alert("tes");
@@ -332,7 +321,7 @@
                     // Implement your AJAX settings for data retrieval here
                     url: '{!! route('uster.new_request.delivery.delivery_ke_luar_tpk.pbm') !!}',
                     dataType: 'json',
-                    processResults: function(data) {
+                    processResults: function (data) {
                         const arrs = data;
                         return {
                             results: arrs.map((arr, i) => ({
@@ -345,7 +334,7 @@
                 }
             });
 
-            $('#NM_PELANGGAN').on('select2:select', function(e) {
+            $('#NM_PELANGGAN').on('select2:select', function (e) {
                 var data = e.params.data;
                 $("#KD_PELANGGAN").val(data.kd_pbm);
                 $("#NM_PELANGGAN").val(data.nm_pbm);
@@ -360,7 +349,7 @@
                     // Implement your AJAX settings for data retrieval here
                     url: '{!! route('uster.new_request.delivery.delivery_luar.master_pelabuhan_palapa') !!}',
                     dataType: 'json',
-                    processResults: function(data) {
+                    processResults: function (data) {
                         const arrs = data;
                         return {
                             results: arrs.map((arr, i) => ({
@@ -373,7 +362,7 @@
                 }
             });
 
-            $('#NM_PELABUHAN_ASAL').on('select2:select', function(e) {
+            $('#NM_PELABUHAN_ASAL').on('select2:select', function (e) {
                 var data = e.params.data;
                 $("#KD_PELABUHAN_ASAL").val(data.cdg_port_code);
                 $("#NM_PELABUHAN_ASAL").val(data.cdg_port_name);
@@ -385,7 +374,7 @@
                     // Implement your AJAX settings for data retrieval here
                     url: '{!! route('uster.new_request.delivery.delivery_luar.master_pelabuhan_palapa') !!}',
                     dataType: 'json',
-                    processResults: function(data) {
+                    processResults: function (data) {
                         const arrs = data;
                         return {
                             results: arrs.map((arr, i) => ({
@@ -398,7 +387,7 @@
                 }
             });
 
-            $('#NM_PELABUHAN_TUJUAN').on('select2:select', function(e) {
+            $('#NM_PELABUHAN_TUJUAN').on('select2:select', function (e) {
                 var data = e.params.data;
                 $("#KD_PELABUHAN_TUJUAN").val(data.cdg_port_code);
                 $("#NM_PELABUHAN_TUJUAN").val(data.cdg_port_name);
@@ -410,7 +399,7 @@
                     // Implement your AJAX settings for data retrieval here
                     url: '{!! route('uster.new_request.delivery.delivery_luar.master_vessel_palapa') !!}',
                     dataType: 'json',
-                    processResults: function(data) {
+                    processResults: function (data) {
                         const arrs = data;
                         return {
                             results: arrs.map((arr, i) => ({
@@ -424,7 +413,7 @@
                 }
             });
 
-            $('#NM_KAPAL').on('select2:select', function(e) {
+            $('#NM_KAPAL').on('select2:select', function (e) {
                 var data = e.params.data;
                 $("#KD_KAPAL").val(data.vessel_code);
                 $("#NM_AGEN").val(data.operator_name);
@@ -445,13 +434,15 @@
                 $("#POL").val(data.id_pol);
                 $("#POD").val(data.id_pod);
                 $("#NM_PELABUHAN_ASAL").val(data.pol);
-                // Create a new option element
                 var newOption = new Option(data.pol, data.pol, true, true);
-
-                // Append the new option to the Select2 dropdown
                 $('#NM_PELABUHAN_ASAL').append(newOption).trigger('change');
-
                 $("#KD_PELABUHAN_ASAL").val(data.id_pol);
+
+                if (data.id_pod) {
+                    $("#KD_PELABUHAN_TUJUAN").val(data.id_pod);
+                    var newOptionPod = new Option(data.pod, data.id_pod, true, true);
+                    $('#NM_PELABUHAN_TUJUAN').append(newOptionPod).trigger('change');
+                }
                 $("#OPEN_STACK").val(data.open_stack);
                 $("#CONT_LIMIT").val(data.container_limit);
                 $("#CLOSING_TIME").val(data.closing_time);
@@ -492,7 +483,7 @@
         }
 
         // Gunakan event 'click' pada tombol dengan ID #calculate
-        $('#calculate').on('click', function(e) {
+        $('#calculate').on('click', function (e) {
             calculator(e); // Panggil fungsi calculator
         });
 
@@ -508,7 +499,7 @@
                 position: "top-right",
                 icon: "success",
                 hideAfter: 2500,
-                beforeHide: function() {
+                beforeHide: function () {
                     if (res.redirect.need) {
                         Swal.fire({
                             html: "<h5>Berhasil input SP2 Ke TPK / Repo,<br> Mengembalikan Anda ke halaman sebelumnya...</h5>",
@@ -521,7 +512,7 @@
                         return false;
                     }
                 },
-                afterHidden: function() {
+                afterHidden: function () {
                     if (res.redirect.need) {
                         window.location.href = res.redirect.to;
                     } else {
@@ -564,11 +555,11 @@
                     'mulai': $mulai,
                     'nanti': $nanti
                 },
-                success: function(data) {
+                success: function (data) {
                     // Memasukkan hasil ke input atau elemen lain
                     $('#SHIFT_RFR').val(data);
                 },
-                error: function(xhr, status, error) {
+                error: function (xhr, status, error) {
                     // Menangani kesalahan jika ada
                     console.error("Error: " + error);
                 }
