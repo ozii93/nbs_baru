@@ -610,10 +610,19 @@ function updateTglApprove(noCont, index) {
                             tgl_bongkar: tglBongkar,
                             REMARK: remark,
                             // Start update by Clara ILCS - 27 November 2023
-                            CONTAINER_SIZE:
-                                container_praya?.containerSize === "21"
-                                    ? "20"
-                                    : container_praya?.containerSize ?? null,
+                            // Updated: fallback derive size dari ISO code jika containerSize kosong
+                            CONTAINER_SIZE: (() => {
+                                const size = container_praya?.containerSize;
+                                if (size === "21") return "20";
+                                if (size) return size;
+                                // Fallback: derive dari ISO code (ISO 6346)
+                                const isoCode = container_praya?.isoCode;
+                                if (isoCode) {
+                                    const isoSizeMap = { "2": "20", "4": "40", "L": "45", "M": "48" };
+                                    return isoSizeMap[isoCode.charAt(0)] || null;
+                                }
+                                return null;
+                            })(),
                             // End update by Clara ILCS - 27 November 2023
                             CONTAINER_TYPE:
                                 container_praya?.containerType ?? "",

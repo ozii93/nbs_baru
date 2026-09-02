@@ -571,12 +571,24 @@ class PerencanaanStrippingController extends Controller
             $depo_tujuan     = $row_cx->id_yard;
 
             if ($request->ASAL_CONT == 'TPK') {
+                // Fallback: derive container_size dari ISO code jika kosong
+                $containerSize = $request->CONTAINER_SIZE ?? '';
+                if (empty($containerSize) && !empty($request->CONTAINER_ISO_CODE)) {
+                    $isoSizeMap = ['2' => '20', '4' => '40', 'L' => '45', 'M' => '48'];
+                    $firstChar = substr($request->CONTAINER_ISO_CODE, 0, 1);
+                    $containerSize = $isoSizeMap[$firstChar] ?? '';
+                    Log::channel('request_stripping')->warning('Approve Container - CONTAINER_SIZE kosong, derived dari ISO code', [
+                        'iso_code' => $request->CONTAINER_ISO_CODE,
+                        'derived_size' => $containerSize
+                    ]);
+                }
+
                 $param = array(
                     "in_nocont" => $request->no_cont,
                     "in_planreq" => $request->no_req,
                     "in_reqnbs" => $request->NO_REQ2,
                     "in_asalcont" => $request->ASAL_CONT,
-                    "in_container_size" => $request->CONTAINER_SIZE ?? '',
+                    "in_container_size" => $containerSize,
                     "in_container_type" => $request->CONTAINER_TYPE ?? '',
                     "in_container_status" => $request->CONTAINER_STATUS ?? '',
                     "in_container_hz" => $request->CONTAINER_HZ ?? '',

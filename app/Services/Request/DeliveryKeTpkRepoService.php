@@ -1213,7 +1213,14 @@ class DeliveryKeTpkRepoService
                     ]
                 ];
             } else {
-                echo $msg;
+                DB::rollBack();
+                return [
+                    'status' => [
+                        'code' => 400,
+                        'msg' => $msg,
+                    ],
+                    'message' => $msg != '' ? $msg : 'Gagal memproses data ke Praya/TPK'
+                ];
             }
         } catch (Exception $th) {
             DB::rollBack();
