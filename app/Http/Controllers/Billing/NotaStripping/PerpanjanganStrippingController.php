@@ -78,7 +78,6 @@ class PerpanjanganStrippingController extends Controller
         $no_req = base64_decode($request->no_req);
         $allData = $this->service->fetchData($no_req);
         $date = date("d M Y H:i:s");
-
         $generator = new BarcodeGeneratorPNG();
         $nota = $allData['data']->no_nota_mti ?? 'NOT_FOUND';
         $barcode = $generator->getBarcode($nota, $generator::TYPE_CODE_128);
@@ -102,6 +101,7 @@ class PerpanjanganStrippingController extends Controller
         $data = $this->service->previewNota($no_req, $koreksi);
         $data = $data->getData(true);
         $data['row_nota'] = json_decode(json_encode($data['row_nota']));
+        
         return view('billing.stripping.perpanjanganstripping.previewproforma', $data);
     }
 
